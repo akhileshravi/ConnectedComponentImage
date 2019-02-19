@@ -1,0 +1,277 @@
+>> % INPUT1
+>> I1
+
+I1 =
+
+     0     1     0     1     0     0     0     1
+     0     1     1     1     0     0     1     1
+     1     0     0     1     0     1     0     1
+     1     1     0     0     0     1     0     0
+     0     0     0     1     0     0     0     1
+     1     1     1     0     0     0     1     1
+
+	 
+	 
+	 
+>> %				OUTPUT for 4-Connectivity using Conncomp	 
+	 
+>> [I1a4, labels_1a4, num_1a4] = Conncomp(I1, 4, [1]); 
+>> I1a4
+
+I1a4 =
+
+     0     2     0     2     0     0     0     4
+     0     2     2     2     0     0     4     4
+     6     0     0     2     0     7     0     4
+     6     6     0     0     0     7     0     0
+     0     0     0     8     0     0     0     9
+    10    10    10     0     0     0     9     9	 
+	 
+>> labels_1a4
+
+labels_1a4 =
+
+     2     4     6     7     8     9    10
+
+>> num_1a4
+
+num_1a4 =
+
+     7
+
+	 
+	 
+	 
+	 
+>> %				OUTPUT for 4-Connectivity using bwconncomp	 
+	 
+>> cc_1b4 = bwconncomp(I1,4)
+
+cc_1b4 = 
+
+  struct with fields:
+
+    Connectivity: 4
+       ImageSize: [6 8]
+      NumObjects: 7
+    PixelIdxList: {[3×1 double]  [3×1 double]  [6×1 double]  [23]  [2×1 double]  [4×1 double]  [3×1 double]}
+
+>> I1b4 = labelmatrix(cc_1b4)
+
+I1b4 =
+
+  6×8 uint8 matrix
+
+   0   3   0   3   0   0   0   6
+   0   3   3   3   0   0   6   6
+   1   0   0   3   0   5   0   6
+   1   1   0   0   0   5   0   0
+   0   0   0   4   0   0   0   7
+   2   2   2   0   0   0   7   7
+
+   
+   
+   
+   
+   
+   
+>> %				OUTPUT for 8-Connectivity using Conncomp   
+   
+   
+>> [I1a8, labels_1a8, num_1a8] = Conncomp(I1,8,[1])
+
+I1a8 =
+
+     0     2     0     2     0     0     0     4
+     0     2     2     2     0     0     4     4
+     2     0     0     2     0     4     0     4
+     2     2     0     0     0     4     0     0
+     0     0     0     5     0     0     0     6
+     5     5     5     0     0     0     6     6
+
+
+labels_1a8 =
+
+     2     4     5     6
+
+
+num_1a8 =
+
+     4
+
+	 
+	 
+	 
+	 
+	 
+>> %				OUTPUT for 8-Connectivity using bwconncomp	 
+	 
+>> cc_1b8 = bwconncomp(I1,4)
+
+cc_1b8 = 
+
+  struct with fields:
+
+    Connectivity: 4
+       ImageSize: [6 8]
+      NumObjects: 7
+    PixelIdxList: {[3×1 double]  [3×1 double]  [6×1 double]  [23]  [2×1 double]  [4×1 double]  [3×1 double]}
+
+>> cc_1b8 = bwconncomp(I1,8)
+
+cc_1b8 = 
+
+  struct with fields:
+
+    Connectivity: 8
+       ImageSize: [6 8]
+      NumObjects: 4
+    PixelIdxList: {[9×1 double]  [4×1 double]  [6×1 double]  [3×1 double]}
+
+>> I1b8 = labelmatrix(cc_1b8)
+
+I1b8 =
+
+  6×8 uint8 matrix
+
+   0   1   0   1   0   0   0   3
+   0   1   1   1   0   0   3   3
+   1   0   0   1   0   3   0   3
+   1   1   0   0   0   3   0   0
+   0   0   0   2   0   0   0   4
+   2   2   2   0   0   0   4   4
+
+>> 
+>>
+>>
+>>
+>> 
+>> I2 = I1
+
+I2 =
+
+     0     1     0     1     0     0     0     1
+     0     1     1     1     0     0     1     1
+     1     0     0     1     0     1     0     1
+     1     1     0     0     0     1     0     0
+     0     0     0     1     0     0     0     1
+     1     1     1     0     0     0     1     1
+
+>> for i = 1:6
+for j = 1:8
+if I2(i,j) == 0
+I2(i,j) = randi([0 90],1,1);
+else
+I2(i,j) = randi([120 255],1,1);
+end
+end
+end
+
+
+
+
+>> %			INPUT 2
+
+
+>> I2
+
+I2 =
+
+     7   155    72   123    84    66    44   198
+    21   182   250   194    47    21   186   204
+   212    35    33   254     3   240    83   228
+   133   155    30    61    12   218     9    59
+    44    70    65   242    81    30    63   146
+   124   221   188    43    82    55   204   236
+
+   
+   
+>> %				OUTPUT2 for 4-Connectivity using Conncomp   
+   
+>> [I2a4,labels_2a4, num_2a4] = Conncomp(I2,4,[100:255])
+
+I2a4 =
+
+     0     2     0     2     0     0     0     4
+     0     2     2     2     0     0     4     4
+     6     0     0     2     0     7     0     4
+     6     6     0     0     0     7     0     0
+     0     0     0     8     0     0     0     9
+    10    10    10     0     0     0     9     9
+
+
+labels_2a4 =
+
+     2     4     6     7     8     9    10
+
+
+num_2a4 =
+
+     7
+
+	 
+	 
+	 
+	 
+	 
+
+>> %				OUTPUT2 for 8-Connectivity using Conncomp	 
+	 
+>> [I2a8,labels_2a8, num_2a8] = Conncomp(I2,8,[100:255])
+
+I2a8 =
+
+     0     2     0     2     0     0     0     4
+     0     2     2     2     0     0     4     4
+     2     0     0     2     0     4     0     4
+     2     2     0     0     0     4     0     0
+     0     0     0     5     0     0     0     6
+     5     5     5     0     0     0     6     6
+
+
+labels_2a8 =
+
+     2     4     5     6
+
+
+num_2a8 =
+
+     4
+
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+>> %				OUTPUT2 for 4-Connectivity using Conncomp	 (Output will be same for 8-connectivity here)
+	 
+>> cc_2b4 = bwconncomp(I2,4)
+
+cc_2b4 = 
+
+  struct with fields:
+
+    Connectivity: 4
+       ImageSize: [6 8]
+      NumObjects: 1
+    PixelIdxList: {[48×1 double]}
+
+>> I2b4 = labelmatrix(cc_2b4)
+
+I2b4 =
+
+  6×8 uint8 matrix
+
+   1   1   1   1   1   1   1   1
+   1   1   1   1   1   1   1   1
+   1   1   1   1   1   1   1   1
+   1   1   1   1   1   1   1   1
+   1   1   1   1   1   1   1   1
+   1   1   1   1   1   1   1   1
+
+>> 
